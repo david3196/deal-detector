@@ -41,7 +41,6 @@
                     <button type="submit">Search</button>
                 </form>
                 <form class="form-group" v-if="productFound && product" @submit.prevent="editProduct">
-                    <!-- Iterate over product properties and create inputs -->
                     <div v-for="(value, key) in product" :key="key">
                     <label v-if="!['_id', 'url', 'site'].includes(key)" class="edit-label-css" :for="`product-${key}`">{{ key }}</label>
                     <input v-if="!['_id', 'url', 'site'].includes(key)" class="edit-input-css" :id="`product-${key}`" v-model="product[key]" type="text" />
@@ -49,7 +48,6 @@
                     <button class="update-button" type="submit">Update Product</button>
                 </form>
 
-                <!-- Not Found Message -->
                 <div v-if="searchAttempted && !productFound">
                     <p>Product not found. Please try again.</p>
                     <button @click="clearSearch">Close</button>
@@ -107,10 +105,8 @@ export default {
 
                 const responseData = await response.json();
                 console.log(responseData.message);
-                // Reset form or handle success (e.g., show a message to the user)
             } catch (error) {
                 console.error('Failed to add category', error);
-                // Handle error (e.g., show error message to the user)
             }
         },
         async searchProduct() {
@@ -208,7 +204,6 @@ export default {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 50%;
     max-width: 600px;
-    /* Maximum width */
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -227,15 +222,12 @@ export default {
     border-radius: 4px;
     font-size: 14px;
     color: #333;
-    /* limit the width of the input fields */
     width: calc(100% - 50px);
-    /* Subtracting the total horizontal padding */
 }
 
 .card-css button {
     padding: 8px 15px;
     background-color: #5cb85c;
-    /* Bootstrap success color */
     color: white;
     border: none;
     border-radius: 4px;
@@ -243,7 +235,6 @@ export default {
     font-size: 14px;
     transition: background-color 0.3s ease;
     align-self: start;
-    /* Align buttons to the start of the card */
     margin-top: 10px;
 }
 .update-all-btn{
@@ -258,16 +249,13 @@ export default {
 }
 .card-css button:hover {
     background-color: #4cae4c;
-    /* Darker success color */
 }
 .update-all-btn:hover{
     background-color: #b05412;
 }
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .card-css {
         width: 90%;
-        /* Adjust width for smaller screens */
         margin-bottom: 10px;
     }
 }</style>

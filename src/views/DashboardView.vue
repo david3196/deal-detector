@@ -44,7 +44,6 @@ export default {
         const watchList = ref({});
         const userEmail = computed(() => store.getters.userEmail);
 
-        // Fetch watch list from the server
         const fetchWatchList = async (email) => {
             try {
                 const response = await fetch(`http://localhost:3000/api/getWatchList?email=${encodeURIComponent(email)}`);
@@ -57,21 +56,18 @@ export default {
             }
         };
 
-        // Watch for changes on userEmail and fetch the watch list when it becomes available
         watch(userEmail, (newEmail) => {
             if (newEmail) {
                 fetchWatchList(newEmail);
             }
         });
 
-        // Call fetchWatchList on mounted only if userEmail is already available
         onMounted(() => {
             if (userEmail.value) {
                 fetchWatchList(userEmail.value);
             }
         });
 
-        // Method to remove a product from the watch list
         const removeFromWatchList = async (category, productId) => {
             try {
                 const response = await fetch(`http://localhost:3000/api/removeFromWatchList`, {
@@ -86,7 +82,6 @@ export default {
                     throw new Error('Failed to remove product from watch list');
                 }
 
-                // Optionally refetch or update the watch list locally
                 await fetchWatchList(userEmail.value);
             } catch (error) {
                 console.error('Error removing product from watch list:', error);
@@ -102,29 +97,29 @@ export default {
 <style scoped>
 .dashboard-page-container {
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  padding: 40px 20px; /* Provide some padding around */
-  min-height: calc(100vh - 80px); /* Subtract top and bottom padding from the viewport height */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  background-color: #e5e5e5; /* Adjust the background color as needed */
+  justify-content: center; 
+  align-items: center;
+  padding: 40px 20px;
+  min-height: calc(100vh - 80px); 
+  box-sizing: border-box;
+  background-color: #e5e5e5;
 }
 
 .price-history-card {
-  width: 100%; /* Full width of its container */
-  max-width: 50%; /* Maximum width */
+  width: 100%;
+  max-width: 50%;
   max-height: 50%;
-  margin: auto; /* Auto margins for centering */
+  margin: auto;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Hide overflow for clean border radius */
+  overflow: hidden;
 }
 
 .price-history-content {
   max-height: 100%;
   overflow-y: auto;
-  padding: 0; /* Reset padding */
+  padding: 0;
 }
 
 .price-history-table {
@@ -179,8 +174,8 @@ export default {
   }
 
   .price-history-card {
-    width: 100%; /* Ensure full width on small screens */
-    margin: 20px 0; /* Add some top and bottom margin */
+    width: 100%;
+    margin: 20px 0;
   }
 }
 

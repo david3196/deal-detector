@@ -5,6 +5,9 @@
       <div class="product-content">
         <h1>{{ uppercase(productDetails.title) }}</h1>
         <p class="product-price">{{ productDetails.price }}.** LEI</p>
+        <p class="product-stock" :class="{ 'in-stock': productDetails.stock > 0, 'out-of-stock': productDetails.stock === 0 }">
+        {{ productDetails.stock > 0 ? 'In Stock' : 'Out of Stock' }}
+      </p>
         <div class="price-history-graph">
           <canvas ref="priceHistoryCanvas"></canvas>
         </div>
@@ -76,7 +79,7 @@ export default {
             label: 'Price',
             data: prices,
             fill: true,
-            backgroundColor: 'rgba(0, 123, 255, 0.2)', // Use your colors
+            backgroundColor: 'rgba(0, 123, 255, 0.2)',
             borderColor: 'rgba(0, 123, 255, 1)',
             tension: 0.4
           }]
@@ -163,7 +166,15 @@ export default {
     flex: 1;
     background-color: #f5f5f5;
 }
+.in-stock {
+  color: green; 
+  font-weight: bold;
+}
 
+.out-of-stock {
+  color: red; 
+  font-weight: bold;
+}
 .product-details-card, .price-history-card {
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -176,14 +187,14 @@ export default {
 
 
 .price-history-card {
-    margin: 20px auto; /* Center the card */
-    border: none; /* Remove border for a cleaner look */
+    margin: 20px auto;
+    border: none;
     border-radius: 8px;
     padding: 16px;
-    background-color: #2c3e50; /* A modern, darker background color */
-    color: #ffffff; /* Light text for contrast */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More pronounced shadow for depth */
-    overflow: hidden; /* Ensures nothing spills out of border-radius */
+    background-color: #2c3e50; 
+    color: #ffffff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    overflow: hidden;
 }
 
 .product-image {
@@ -232,46 +243,45 @@ export default {
 .price-history-content {
     max-height: 400px;
     overflow-y: auto; 
-    width: 100%; /* Ensure table uses the full card width */
+    width: 100%;
 }
 
 .price-history-table {
-    width: 100%; /* Table should fill the card */
+    width: 100%;
     border-collapse: collapse;
-    margin: 20px 0; /* Add some vertical spacing */
+    margin: 20px 0;
 }
 
 .price-history-table th,
 .price-history-table td {
-    padding: 12px 8px; /* Increase padding for a better visual */
-    border-bottom: 1px solid #4a5c68; /* Use a lighter border color for each row */
+    padding: 12px 8px; 
+    border-bottom: 1px solid #4a5c68; 
 }
 
 .price-history-table thead {
-    background-color: #34495e; /* Slightly darker background for the header */
+    background-color: #34495e;
 }
 
 .price-history-table th {
     font-weight: bold;
-    color: #ecf0f1; /* Lighter text color for headers */
+    color: #ecf0f1;
 }
 
 .price-history-table tbody tr:hover {
-    background-color: #3b4a59; /* Hover effect for rows */
+    background-color: #3b4a59; 
 }
 
 .price-history-graph {
     width: 80%;
-    height: 200px; /* Adjust as needed */
+    height: 200px;
     margin: 1rem auto;
-    background-color: #1e1e1e; /* Dark background for the graph */
+    background-color: #1e1e1e; 
     border-radius: 8px;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
 }
 
-/* You may want to style the canvas element directly if needed */
 .price-history-graph canvas {
     position: absolute;
     top: 0;

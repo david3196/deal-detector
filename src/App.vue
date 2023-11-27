@@ -62,7 +62,6 @@ export default {
     });
 
     onMounted(() => {
-      // This might be redundant if the user is already set in onAuthStateChanged
       if (user.value && user.value.email) {
         fetchUserData(user.value.email);
       }
@@ -125,7 +124,6 @@ body,
 .navbar {
   padding: 10px 30px;
   background-color: #20232a;
-  /* Dark background for a modern look */
   color: white;
   display: flex;
   align-items: center;
@@ -145,7 +143,6 @@ body,
 .navbar a:hover,
 .navbar button:hover {
   color: #61dafb;
-  /* Brighter color for hover state */
   border-color: #61dafb;
   background-color: rgba(97, 218, 251, 0.1);
 }

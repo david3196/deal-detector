@@ -136,8 +136,6 @@ a {
     height: auto;
     display: block;
     object-fit: cover;
-    /* border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem; */
 }
 
 .product-info {
@@ -178,13 +176,13 @@ a {
 
 .search-bar {
     width: 100%;
-    max-width: 500px; /* Adjust width as necessary */
+    max-width: 500px;
     padding: 10px 15px;
     border-radius: 20px;
-    border: 2px solid #007bff; /* Border color can match the site's theme */
+    border: 2px solid #007bff;
     font-size: 1rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    outline: none; /* Removes the outline to make it look modern */
+    outline: none;
     transition: all 0.3s ease;
 }
 
